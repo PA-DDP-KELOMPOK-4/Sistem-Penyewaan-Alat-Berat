@@ -1,0 +1,9 @@
+Code,Jenis Alat,Biaya Rental,stok Alat
+1A,Crane,Rp. 300000/Jam,5
+1B,Excavator,Rp. 100000/Jam,3
+2B,Excavator,Rp. 350000/Jam,6
+1C,Forklift,Rp. 150000/Jam,2
+1D,BullDozer,Rp. 250000/Jam,1
+2D,BullDozer,Rp. 300000/Jam,4
+1E,Dump Truck,Rp. 200000/Jam,7
+2E,Dump Truck,Rp. 350000/Jam,8
