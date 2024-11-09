@@ -122,7 +122,13 @@ Variabel file_name merupakan nama file CSV yang akan digunakan.
 
 => Jika memilih '5' maka program akan memanggil fungsi hapus_user.
 
+![image](https://github.com/user-attachments/assets/852ad115-4bc3-414f-a8b4-f8f53f80426d)
 
+=> Jika memilih '6' maka program akan kembali ke menu pilih role (menu utama)
+
+![image](https://github.com/user-attachments/assets/6e10252f-e39c-443c-a46e-425fbbab109d)
+
+=> jika data tidak valid maka program akan mencetak "pilihan tidak valid. Silahkan pilih lagi". Jika username atau password salah maka program akan mencetak " username atau password salah, coba lagi."
 
 
 
