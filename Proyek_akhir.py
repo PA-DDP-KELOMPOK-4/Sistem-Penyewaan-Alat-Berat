@@ -4,16 +4,16 @@ from prettytable import PrettyTable
 from datetime import datetime
 
 admin = {'nama': 'Manisha', 'password': '12345'}
-users = [] # list kosong untuk menyimpan objek data pengguna (User)
+users = [] 
 
 # Fungsi untuk menyimpan data pengguna ke dalam file CSV
 def simpan_users_ke_csv():
     with open('users.csv', mode='w', newline='') as file:
-        fieldnames = ['nama', 'password', 'saldo'] # untuk menulis nama kolom
-        writer = csv.DictWriter(file, fieldnames=fieldnames) # objek writer
-        writer.writeheader() # untuk menulis kolom header
+        fieldnames = ['nama', 'password', 'saldo'] 
+        writer = csv.DictWriter(file, fieldnames=fieldnames) 
+        writer.writeheader() 
 
-        for user in users:  # Tulis setiap baris data pengguna ke dalam file CSV
+        for user in users:  
             writer.writerow({'nama': user.nama, 'password': user.password, 'saldo': user.saldo})
 
 # fungsi memuat daata user dari file csv
@@ -58,7 +58,7 @@ class Invoice:
         self.code = code
         self.total_jam = total_jam
         self.total_biaya = total_biaya
-        self.tanggal_transaksi = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Menyimpan tanggal dan waktu transaksi
+        self.tanggal_transaksi = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
 
 
 # ini Data list alat berat bisa dibaca dari file CSV atau diinisialisasi di dalam kode
@@ -76,7 +76,6 @@ List_AlatBerat = [
 # Simpan data ke dalam file CSV
 def dataList_AlatBerat():
 
-    # Membuka file CSV dan menulis data alat berat ke dalamnya
     with open('List_AlatBerat.csv', 'w', newline='') as new_file:
         fieldNames = ["Code", "Jenis Alat", "Biaya Rental", "stok Alat"]
         csv_writer = csv.DictWriter(
@@ -86,38 +85,36 @@ def dataList_AlatBerat():
         # Tulis setiap baris data alat berat ke dalam file CSV
         for AlatBerat in List_AlatBerat:
             csv_writer.writerow(AlatBerat)
-dataList_AlatBerat() # Memanggil fungsi dataList_AlatBerat untuk menyimpan data alat berat ke dalam file CSV
+dataList_AlatBerat()
 
-# Nama file CSV yang akan digunakan
 file_name = 'List_AlatBerat.csv'
 
 # Fungsi untuk membaca semua data dari file CSV
 def baca_List_AlatBerat():
-    data = []  # Inisialisasi list untuk menampung data dari file CSV
+    data = [] 
     try:
-        with open(file_name, mode='r', newline='') as file:  # Buka file CSV
-            reader = csv.DictReader(file)  # Membaca file sebagai dictionary
-            for row in reader:  # Loop setiap baris data dalam file CSV
-                data.append(row)  # Menambahkan setiap baris data ke dalam list data
+        with open(file_name, mode='r', newline='') as file:  
+            reader = csv.DictReader(file)  
+            for row in reader: 
+                data.append(row)  
     except FileNotFoundError:
         print(f"File '{file_name}' tidak ditemukan.")
     except Exception as e:
         print(f"Terjadi kesalahan saat membaca data alat berat: {e}")
-    return data  # Mengembalikan data yang telah terbaca dari file CSV
+    return data  
 
 # Fungsi untuk menambahkan data alat baru ke file CSV
 def tambah_List_AlatBerat(Code, Jenis_Alat, Biaya_Rental, stok_Alat):
     try:
-        with open(file_name, mode='r', newline='') as file:  # Membuka file CSV untuk pembacaan
-            reader = csv.DictReader(file)  # Membaca file sebagai dictionary
-            data = list(reader)  # Membuat list dari data yang terbaca
-
+        with open(file_name, mode='r', newline='') as file: 
+            reader = csv.DictReader(file) 
+            data = list(reader) 
 
         if any(row['Code'] == Code for row in data):
             print("Code sudah ada di Data\n")
         else:
             if stok_Alat.isdigit() and int(stok_Alat) >= 0 and Biaya_Rental.replace("Rp. ", "").replace("/Jam", "").isdigit():
-                with open(file_name, mode='a', newline='') as file:  # Membuka file CSV untuk menulis
+                with open(file_name, mode='a', newline='') as file:  
                     fieldnames = ["Code", "Jenis Alat", "Biaya Rental", "stok Alat"]
                     writer = csv.DictWriter(file, fieldnames=fieldnames)
                     writer.writerow({
@@ -135,17 +132,16 @@ def tambah_List_AlatBerat(Code, Jenis_Alat, Biaya_Rental, stok_Alat):
 # Fungsi untuk memperbarui data dalam file CSV
 def perbarui_List_AlatBerat():
     try:
-        data = baca_List_AlatBerat()  # Membaca data alat berat dari file CSV
+        data = baca_List_AlatBerat() 
         code = input("Masukkan Code alat yang ingin diperbarui: ")
         alat_ditemukan = False
 
         for row in data:
-            if row['Code'] == code:  # Mencari alat berdasarkan kode
+            if row['Code'] == code: 
                 alat_ditemukan = True
                 print("Data Alat yang ditemukan:")
                 print(f"Jenis Alat: {row['Jenis Alat']}, Biaya Rental: {row['Biaya Rental']}, Stok Alat: {row['stok Alat']}")
                 
-                # Memperbarui informasi
                 row['Jenis Alat'] = input("Masukkan jenis alat baru: ")
                 row['Biaya Rental'] = input("Masukkan biaya rental baru: ")
                 stok_baru = input("Masukkan stok alat baru: ")
@@ -159,7 +155,6 @@ def perbarui_List_AlatBerat():
                 break
 
         if alat_ditemukan:
-            # Menyimpan data yang telah diperbarui ke file CSV
             with open(file_name, mode='w', newline='') as file:
                 fieldnames = ["Code", "Jenis Alat", "Biaya Rental", "stok Alat"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -178,24 +173,23 @@ def perbarui_List_AlatBerat():
 # Fungsi untuk menghapus data dari file CSV
 def hapus_List_AlatBerat():
     try:
-        data = baca_List_AlatBerat()  # Membaca data alat berat dari file CSV
+        data = baca_List_AlatBerat()  
         code = input("Masukkan Code alat yang ingin dihapus: ")
         alat_ditemukan = False
 
         for row in data:
-            if row['Code'] == code:  # Mencari alat berdasarkan kode
+            if row['Code'] == code:  
                 alat_ditemukan = True
-                data.remove(row)  # Menghapus alat dari daftar
+                data.remove(row)  
                 print("Alat berhasil dihapus.\n")
                 break
 
         if alat_ditemukan:
-            # Menyimpan data yang telah diperbarui ke file CSV
             with open(file_name, mode='w', newline='') as file:
                 fieldnames = ["Code", "Jenis Alat", "Biaya Rental", "stok Alat"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
-                writer.writeheader()  # Menulis header
-                writer.writerows(data)  # Menulis data yang telah diperbarui
+                writer.writeheader() 
+                writer.writerows(data) 
         else:
             print("Alat tidak ditemukan.\n")
 
@@ -210,8 +204,8 @@ def hapus_user():
         user_ditemukan = next((u for u in users if u.nama == username), None)
 
         if user_ditemukan:
-            users.remove(user_ditemukan)  # Menghapus user dari data
-            simpan_users_ke_csv()  # Menyimpan data user ke CSV
+            users.remove(user_ditemukan) 
+            simpan_users_ke_csv() 
             print(f"User  '{username}' berhasil dihapus.\n")
         else:
             print(f"User  '{username}' tidak ditemukan.\n")
@@ -224,9 +218,9 @@ def loginAdmin():
         logUser = input("\nMasukkan Username : ")
         logPW = pwinput.pwinput("Password : ", mask='*')
 
-        # memeriksa username sama password
+        
         if logUser == "Manisha" and logPW == "12345":
-            while True: # Jika login berhasil, tampilkan menu utama
+            while True:
                 print("\n================================Menu Utama Admin================================\n")
                 print("Selamat Datang!")
                 print("1. Lihat Daftar Alat")
@@ -241,7 +235,7 @@ def loginAdmin():
                     print("\n===============================Lihat Data===============================\n")
                     data = baca_List_AlatBerat()
                     tabel = PrettyTable(["Code", "Jenis Alat", "Biaya Rental", "stok Alat"])
-                    for row in data: # Menampilkan data menggunakan PrettyTable
+                    for row in data:
                         tabel.add_row([row['Code'], row['Jenis Alat'], row['Biaya Rental'], row['stok Alat']])
                     print(tabel)
 
@@ -254,13 +248,12 @@ def loginAdmin():
                     data = baca_List_AlatBerat()
 
                     for row in data:
-                        if row['Code'] == Code: # Memeriksa jika Code sudah ada di data
+                        if row['Code'] == Code: 
                             break
                     if stok_Alat.isnumeric():
                         if int(stok_Alat) < 0:
                             print("Inputan tidak valid")
-
-                    # Memanggil fungsi tambah_List_AlatBerat dengan input yang diberikan
+                            
                     tambah_List_AlatBerat(Code, Jenis_Alat, Biaya_Rental, stok_Alat)
 
                 elif pilihan == '3':
@@ -298,22 +291,22 @@ def registrasi_user():
     print("\n=====================================Registrasi=====================================\n")
     nama = input("Masukkan username anda: ")
     password = pwinput.pwinput("Masukkan password anda: ", mask='*')
-    new_user = User(nama, password) # Membuat objek User baru dengan username dan password
-    users.append(new_user) # Menambahkan user baru ke dalam list pengguna
+    new_user = User(nama, password) 
+    users.append(new_user) 
 
     # Memeriksa keberadaan username menggunakan fungsi cek_username
-    if not cek_username(nama): # Jika username belum ada, tulis username dan password ke file 'users.csv'
+    if not cek_username(nama):
         with open('users.csv', 'a', newline='') as file:
             fieldnames = ['username', 'password']
             writer = csv.DictWriter(file, fieldnames=fieldnames) 
-            writer.writerow({'username': nama, 'password': password}) # Menulis username dan password baru ke dalam file CSV
+            writer.writerow({'username': nama, 'password': password}) 
         print(f"Akun dengan username '{nama}' telah berhasil terdaftar.\n")
         print("\nRegistrasi Berhasil.\n")
-        simpan_users_ke_csv() # Menyimpan perubahan ke dalam file CSV
+        simpan_users_ke_csv()
     else:
         print(f"Maaf, username '{nama}' sudah digunakan. Silakan pilih username lain.\n")
 
-load_users_dari_csv() # Memuat data pengguna dari file CSV saat aplikasi dijalankan
+load_users_dari_csv() 
 
 def login_user():
     while True:
@@ -321,7 +314,7 @@ def login_user():
         nama = input("Masukkan username anda: ")
         password = pwinput.pwinput("Masukkan password anda: ", mask='*')
         user = next((u for u in users if u.nama == nama and u.password == password), None)
-        if user: # Jika pengguna ditemukan
+        if user: 
             print("Login berhasil.\n")
             return user
         else:
@@ -336,35 +329,35 @@ def melakukan_transaksi(user):
     print(tabel)
 
     code = input("Masukkan Code alat yang ingin disewa: ")
-    Alat = next((item for item in List_AlatBerat if item["Code"] == code), None)  # Mencari alat dengan kode yang dimasukkan
+    Alat = next((item for item in List_AlatBerat if item["Code"] == code), None) 
 
-    if Alat:  # Jika alat ditemukan
+    if Alat:  
         try:
-            total_jam = input("Masukkan jumlah jam yang ingin disewa: ")  # Meminta pengguna untuk memasukkan jumlah jam yang ingin disewa
-            if total_jam.isdigit() and int(total_jam) > 0:  # Periksa apakah input jumlah jam merupakan angka yang positif
-                total_jam = int(total_jam)  # Mengubah total_jam menjadi tipe data integer
-                total_biaya = int(Alat['Biaya Rental'].replace("Rp. ", "").replace("/Jam", "")) * total_jam  # Menghitung total biaya
-                if user.saldo >= total_biaya and Alat['stok Alat'] >= 1:  # Jika saldo dan stok mencukupi
+            total_jam = input("Masukkan jumlah jam yang ingin disewa: ") 
+            if total_jam.isdigit() and int(total_jam) > 0:  
+                total_jam = int(total_jam) 
+                total_biaya = int(Alat['Biaya Rental'].replace("Rp. ", "").replace("/Jam", "")) * total_jam 
+                if user.saldo >= total_biaya and Alat['stok Alat'] >= 1: 
                     user.saldo -= total_biaya  # Mengurangi saldo pengguna
-                    invoice = Invoice(user, code, total_jam, total_biaya)  # Membuat objek Invoice untuk transaksi
-                    user.invoices.append(invoice)  # Menambahkan invoice ke daftar transaksi pengguna
-                    Alat['stok Alat'] -= 1  # Mengurangi stok alat yang disewa
-                    simpan_users_ke_csv()  # Menyimpan perubahan saldo pengguna ke file CSV
-                    dataList_AlatBerat()  # Memperbarui data stok alat ke file CSV
+                    invoice = Invoice(user, code, total_jam, total_biaya) 
+                    user.invoices.append(invoice) 
+                    Alat['stok Alat'] -= 1  
+                    simpan_users_ke_csv()  
+                    dataList_AlatBerat() 
                     print(f"Transaksi berhasil!\n")
                     print(f"Transaksi berhasil! Total biaya: Rp. {total_biaya}.\n")
-                elif user.saldo < total_biaya:  # Jika saldo tidak mencukupi
-                    print("Saldo tidak mencukupi.\n")  # Memberi pesan bahwa saldo tidak mencukupi
+                elif user.saldo < total_biaya: 
+                    print("Saldo tidak mencukupi.\n")  
                 else:  # Jika stok alat tidak mencukupi
-                    print("Stok Alat tidak mencukupi.\n")  # Memberi pesan bahwa stok alat tidak mencukupi
+                    print("Stok Alat tidak mencukupi.\n")  
             else:  # Jika input jumlah jam tidak valid
-                print("Jumlah jam harus berupa angka dan lebih besar dari 0.\n")  # Memberi pesan bahwa jumlah jam harus berupa angka positif
+                print("Jumlah jam harus berupa angka dan lebih besar dari 0.\n")  
         except ValueError:
-            print("Inputan tidak valid, harap masukkan angka untuk jumlah jam.\n")  # Menangani kesalahan jika input bukan angka
+            print("Inputan tidak valid, harap masukkan angka untuk jumlah jam.\n") 
         except Exception as e:
-            print(f"Terjadi kesalahan saat melakukan transaksi: {e}")  # Menangani kesalahan umum
+            print(f"Terjadi kesalahan saat melakukan transaksi: {e}")  
     else:  # Jika alat tidak ditemukan
-        print("Alat tidak ditemukan.\n")  # Memberi pesan bahwa alat dengan kode yang dimasukkan tidak ditemukan
+        print("Alat tidak ditemukan.\n") 
 
 
 # Fungsi untuk menampilkan struk transaksi pengguna
@@ -380,15 +373,15 @@ def tampilkan_invoices(user):
                 print(f"\nAlat: {equipment['Jenis Alat']}")
                 print(f"Total jam: {invoice.total_jam}")
                 print(f"Total Biaya: Rp. {invoice.total_biaya}")
-                print(f"Tanggal Transaksi: {invoice.tanggal_transaksi}")  # Tampilkan tanggal transaksi
+                print(f"Tanggal Transaksi: {invoice.tanggal_transaksi}")  
                 print("=" * 50)
 
 def tambah_saldo(user):
     try:
         jumlah_saldo = float(input("Masukkan jumlah saldo yang ingin ditambahkan: "))
-        if jumlah_saldo > 0:  # Jika jumlah saldo lebih dari nol
-            user.saldo += jumlah_saldo  # Tambahkan saldo ke saldo pengguna
-            simpan_users_ke_csv()  # Simpan perubahan saldo ke file CSV
+        if jumlah_saldo > 0: 
+            user.saldo += jumlah_saldo 
+            simpan_users_ke_csv() 
             print(f"Saldo berhasil ditambahkan. Saldo sekarang: Rp. {user.saldo}\n")
         else:
             print("Inputan tidak valid, jumlah saldo harus lebih dari nol.")
@@ -449,11 +442,11 @@ def menu():
                     pilihan_user_login = input("Pilih (1/2/3): ")
 
                     if pilihan_user_login == "1":
-                        registrasi_user() # Jalankan fungsi untuk registrasi user
+                        registrasi_user()
                     elif pilihan_user_login == "2":
-                        user = login_user() # Jalankan fungsi login_user() untuk login
+                        user = login_user() 
                         if user:
-                            pilihan_user(user) # Jika user berhasil login, jalankan fungsi untuk opsi user
+                            pilihan_user(user)
                     elif pilihan_user_login == "3":
                         break 
                     else:
