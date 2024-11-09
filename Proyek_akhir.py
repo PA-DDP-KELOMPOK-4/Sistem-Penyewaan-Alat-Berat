@@ -285,13 +285,13 @@ def loginAdmin():
 
 # Fungsi cek_username memeriksa keberadaan username dalam file CSV
 def cek_username(nama):
-    # Membuka file 'users.csv' untuk dibaca
+   
     with open('users.csv', 'r', newline='') as file:
-        reader = csv.DictReader(file) # Membaca file CSV sebagai dictionary
+        reader = csv.DictReader(file) 
         for row in reader:
-            if row['nama'] == nama: # Jika nama sudah ada dalam baris file CSV, mengembalikan True
+            if row['nama'] == nama: 
                 return True
-        return False # Mengembalikan False jika nama tidak ditemukan dalam file CSV
+        return False 
 
 # Fungsi untuk mendaftarkan pengguna baru
 def registrasi_user():
@@ -427,35 +427,44 @@ def pilihan_user(user):
             print("Pilihan tidak valid.\n")
 
 # Main program
-while True:
-    print("\n===================================== Sewa Alat Berat Transformer =====================================\n")
-    print("1. Admin")
-    print("2. User")
-    print("3. Keluar")
-    pilihan = input("Masukkan pilihan: ")
+def menu():
+    while True:
+        try:
 
-    if pilihan == "1":
-        print("\n=====================================Admin=====================================\n")
-        loginAdmin()
-    elif pilihan == "2":
-        print("\n===================================== Customer =====================================\n")
-        while True:
-            print("1. Registrasi")
-            print("2. Login")
-            print("3. Kembali")
-            pilihan_user_login = input("Pilih (1/2/3): ")
+            print("\n===================================== Sewa Alat Berat Transformer =====================================\n")
+            print("1. Admin")
+            print("2. User")
+            print("3. Keluar")
+            pilihan = input("Masukkan pilihan: ")
 
-            if pilihan_user_login == "1":
-                registrasi_user() # Jalankan fungsi untuk registrasi user
-            elif pilihan_user_login == "2":
-                user = login_user() # Jalankan fungsi login_user() untuk login
-                if user:
-                    pilihan_user(user) # Jika user berhasil login, jalankan fungsi untuk opsi user
-            elif pilihan_user_login == "3":
-                break 
+            if pilihan == "1":
+                print("\n=====================================Admin=====================================\n")
+                loginAdmin()
+            elif pilihan == "2":
+                print("\n===================================== Customer =====================================\n")
+                while True:
+                    print("1. Registrasi")
+                    print("2. Login")
+                    print("3. Kembali")
+                    pilihan_user_login = input("Pilih (1/2/3): ")
+
+                    if pilihan_user_login == "1":
+                        registrasi_user() # Jalankan fungsi untuk registrasi user
+                    elif pilihan_user_login == "2":
+                        user = login_user() # Jalankan fungsi login_user() untuk login
+                        if user:
+                            pilihan_user(user) # Jika user berhasil login, jalankan fungsi untuk opsi user
+                    elif pilihan_user_login == "3":
+                        break 
+                    else:
+                        print("Pilihan tidak valid.\n")
+            elif pilihan == "3":
+                break
             else:
-                print("Pilihan tidak valid.\n")
-    elif pilihan == "3":
-        break
-    else:
-        print("Pilihan tidak valid. Coba lagi!\n")
+                print("Pilihan tidak valid. Coba lagi!\n")
+        except KeyboardInterrupt:
+            print("Hayoloo, jangan ganggu ganggu programnya ya!")
+            break
+
+if __name__ == "__main__":
+    menu()
