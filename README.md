@@ -130,9 +130,118 @@ Variabel file_name merupakan nama file CSV yang akan digunakan.
 
 => jika data tidak valid maka program akan mencetak "pilihan tidak valid. Silahkan pilih lagi". Jika username atau password salah maka program akan mencetak " username atau password salah, coba lagi."
 
+![image](https://github.com/user-attachments/assets/e0cb635f-590d-48b2-8bab-e29828b865ec)
+
+Program berfungsi untuk mengecek keberadaan username dalam file csv. Fungsi if row berfungsi jika nama sudah ada dalam baris file CSV, mengembalikan True. Fungsi return berfungsi untuk mengembalikan False jika nama tidak ditemukan dalam file CSV.
+
+![image](https://github.com/user-attachments/assets/151b11cb-945e-4c7c-92a1-4b36c7ea7b8a)
+
+=> Program diatas berfungsi untuk mendaftarkan pengguna baru. Variabel new_user digunakan untuk membuat objek user baru dengan username dan password. Fungsi users.append yaitu untuk menambah user baru ke dalam list pengguna. Fungsi if not  yaitu jika username belum ada tulis username dan password ke file 'users.csv'. kemudian buat fungsi simpan_users_ke_csv() agar program menyimpan data user baru ke file CSV.
+
+![image](https://github.com/user-attachments/assets/f62161c2-6488-432b-91ca-f4dfb9018ec9)
+
+=> Prograam diatas berfungsi untuk menambahkan saldo user agar bisa bertransaksi. jumlah saldo harus lebih dari 0, kemudian program akan menambahkan saldo pengguna dan menyimpannya ke file csv. Program akan mencetak "Saldo berhasil ditambahkan". jika user menginput saldo =< 0 maka program akan mecetak inputan tidak valid, jumlah saldo harus lebih dari 0.
+
+![image](https://github.com/user-attachments/assets/52337a2b-d1e0-4df5-8152-e5a2e341be40)
+
+=> Fungsi ini memungkinkan pengguna memilih opsi menu user. 
+
+![image](https://github.com/user-attachments/assets/c0ca3473-6930-4216-9e20-e5577ee61785)
+
+=> Program akan memanggil fungsi sesuai pilihan yang di input
+
+![image](https://github.com/user-attachments/assets/14e0da32-fbe4-4358-8139-185c2cce1f9c)
+
+=> Fungsi Pilih role yang merupakan program utama
+
+![image](https://github.com/user-attachments/assets/d6de60d4-6d70-4136-aa6a-0f818984efa4)
+
+=> Program akan memanggil fungsi sesuai pilihan yang di input, jika tidak melakukan input maka program akan mencetak "Pilihan tidak valid, coba lagi."
+
+![image](https://github.com/user-attachments/assets/21b90354-d40a-47a0-959f-c1a8968a3cfa)
+
+=> Fungsi ini berfungsi agar jika terjadi bug pada program maka program otomatis berhenti.
+
+![image](https://github.com/user-attachments/assets/5ae55268-a9a8-439b-8476-3894b2a61984)
+
+=> Fungsi ini digunakan untuk memanggil fungsi main sehingga program dapat berjalan normal.
+
+# Program Output
+Menu Pilih Role:
+
+![image](https://github.com/user-attachments/assets/2977f08d-33b3-4dc6-a7fb-019aeb4f146d)
+
+Pilih Admin:
+
+![image](https://github.com/user-attachments/assets/1884174d-a988-4a89-9763-ed35ff5575b2)
+
+Menu Admin:
+
+![image](https://github.com/user-attachments/assets/5c298964-a4c4-47fe-9938-ded41dd35ddf)
+
+Pilih Lihat daftar alat:
+
+![image](https://github.com/user-attachments/assets/eb29179b-7b55-4df8-9e0a-a16cee626ea2)
+
+Pilih tambah alat:
+
+![image](https://github.com/user-attachments/assets/6d91d234-8ea1-4564-b94d-e9df55c370ba)
+
+Pilih Perbarui Alat:
+
+![image](https://github.com/user-attachments/assets/41eee38e-add6-4d96-8daf-5e65a3f57b29)
+
+Pilih hapus alat:
+
+![image](https://github.com/user-attachments/assets/0b4b0235-fd0e-4d3a-9967-ea9cd218201c)
+
+Pilih Hapus User:
+
+![image](https://github.com/user-attachments/assets/54adcfb2-515b-441d-a2a2-a580c1c7025c)
+
+Pilih Keluar: Program kembali ke Menu Pilih Role
+
+![image](https://github.com/user-attachments/assets/5c454ab1-a599-430b-9539-763506468a2a)
+
+Pilih User:
+![image](https://github.com/user-attachments/assets/00dee870-fc57-402e-a943-aba49708dcf2)
+
+Pilih Register:
+![image](https://github.com/user-attachments/assets/45ad8fc8-95af-4c1c-8a38-3497e08f2109)
+
+Pilih Login:
+![image](https://github.com/user-attachments/assets/ba9889e1-6825-490b-8a4e-f3589030dab4)
+
+Masuk Menu User:
+
+![image](https://github.com/user-attachments/assets/418a00a8-9483-41d8-8cf1-8a0883f667ff)
+
+Pilih Melakukan Transaksi:
+
+![image](https://github.com/user-attachments/assets/b08937b3-37e6-4e3b-b509-450f5baf4581)
+
+Pilih lihat struk:
+
+![image](https://github.com/user-attachments/assets/55deb900-c605-49f2-b088-2c53b30a307d)
+
+Pilih Tambah Saldo:
+
+![image](https://github.com/user-attachments/assets/8a2ed0ad-c226-41b4-a25b-d672221c28c1)
+
+Pilih Lihat Saldo:
+
+![image](https://github.com/user-attachments/assets/88a7f8d7-d613-4b01-8b65-be101906428f)
+
+Pilih Kembali: Program kembali ke menu utama user
+
+![image](https://github.com/user-attachments/assets/3b0d5249-8fe9-4930-a5e0-f8ae16287384)
+
+Pilih kembali: Program kembali ke menu pilih role:
+
+![image](https://github.com/user-attachments/assets/90d26421-9422-4808-8b2e-5209fcc92690)
+
+Pilih Keluar: Program berakhir
 
 
-
-
-
+Sekiannnnnnn laporan kami, Terimakasih :)
 
